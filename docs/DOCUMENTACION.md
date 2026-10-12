@@ -1,13 +1,13 @@
 ---
 titulo: "Amazon Clone with React"
 subtitulo: "Documentación Oficial del Proyecto"
-version: "1.0.0"
+version: "1.1.0"
 fecha: "2026-10-11"
 autor: "Dylan Dominguez Perez"
 contacto: "github.com/DylanDominguez"
 estado: "En desarrollo"
 audiencia: "Equipo de desarrollo"
-commit_base: "9bb4aa8"
+commit_base: "49fa7c2"
 ---
 
 # Amazon Clone with React — Documentación Oficial
@@ -21,18 +21,19 @@ commit_base: "9bb4aa8"
 | Campo | Valor |
 |---|---|
 | Proyecto | Amazon Clone with React |
-| Versión del documento | 1.0.0 |
+| Versión del documento | 1.1.0 |
 | Fecha de emisión | 2026-10-11 |
 | Estado | En desarrollo (fase inicial) |
 | Autor | Dylan Dominguez Perez |
 | Audiencia | Equipo de desarrollo |
-| Commit documentado | `9bb4aa8` |
+| Commit documentado | `49fa7c2` |
 | Repositorio | `Amazon-Clone-with-React` (rama `main`) |
 
 ### 1.1 Historial de versiones del documento
 
 | Versión | Fecha | Commit | Responsable | Descripción |
 |---|---|---|---|---|
+| 1.1.0 | 2026-10-11 | `49fa7c2` | Dylan Dominguez Perez | Inicialización de la app React en `amazon-clone/` con Create React App, configuración de Firebase, stack confirmado (React 19, CRA), estructura real documentada, comandos de arranque actualizados, inventario de componentes inicial. |
 | 1.0.0 | 2026-10-11 | `9bb4aa8` | Dylan Dominguez Perez | Creación de la documentación oficial: estructura base, stack declarado, guías iniciales y proceso de mantenimiento. |
 
 ---
@@ -58,7 +59,7 @@ El objetivo técnico del proyecto es construir una interfaz basada en **componen
 
 ### 2.3 Alcance
 
-**Pendiente de definición.** El detalle de funcionalidades (features) del clon se definirá con el equipo y se documentará en la sección 12 (Roadmap). Mientras tanto, el alcance se limita a lo declarado en el README del proyecto.
+**Pendiente de definición.** El detalle de funcionalidades (features) del clon se definirá con el equipo y se documentará en la sección 12 (Roadmap). El estado actual incluye la inicialización del proyecto React con configuración de Firebase.
 
 ---
 
@@ -66,14 +67,16 @@ El objetivo técnico del proyecto es construir una interfaz basada en **componen
 
 | Tecnología | Rol | Justificación | Estado |
 |---|---|---|---|
-| ⚛️ React | Librería de UI | Arquitectura por componentes, ecosistema maduro | Declarada |
-| 🟨 JavaScript (ES6+) | Lógica de la aplicación | Lenguaje estándar del ecosistema React | Declarada |
-| 🎨 CSS3 | Estilos y layout | Estilos responsivos sin dependencias adicionales | Declarada |
-| ⚡ Vite | Build tool y dev server | Arranque instantáneo y build optimizado | Declarada |
-| 📦 npm | Gestión de dependencias | Empaquetado oficial de Node.js | En uso |
+| ⚛️ React 19.3.0 | Librería de UI | Arquitectura por componentes, ecosistema maduro, concurrent features | ✅ Instalada |
+| 🟨 JavaScript (ES6+) | Lógica de la aplicación | Lenguaje estándar del ecosistema React | ✅ En uso |
+| 🎨 CSS3 | Estilos y layout | Estilos responsivos sin dependencias adicionales | ✅ En uso |
+| 🔧 Create React App (react-scripts 5.0.1) | Build tool y dev server | Configuración cero, ampliamente adoptado, buen soporte | ✅ Instalada |
+| 🔥 Firebase (config) | Backend as a Service | Autenticación, base de datos, hosting, analytics | ⚙️ Configurada (SDK pendiente) |
+| 📦 npm | Gestión de dependencias | Empaquetado oficial de Node.js | ✅ En uso |
 | 🟩 Node.js | Runtime de herramientas | Ejecución de scripts de build y documentación | ≥ 24 (entorno actual) |
+| 🧪 Testing Library / Jest | Testing | Testing unitario y de integración incluido en CRA | ✅ Incluido |
 
-> **Nota:** Las versiones exactas de React y Vite se confirmarán y documentarán en la versión 1.1.0 de este documento, cuando se inicialice el proyecto con Vite. Las dependencias reales se mantendrán en `package.json` y serán la fuente de verdad; esta tabla refleja el stack declarado.
+> **Nota:** El stack original preveía Vite; la decisión final fue Create React App (react-scripts). Firebase SDK (`firebase` package) aún no está en `dependencies` — solo existe el archivo de configuración `src/firebase.js`. Se añadirá cuando se implemente autenticación o base de datos.
 
 ### 3.1 Herramientas de documentación
 
@@ -92,52 +95,68 @@ El objetivo técnico del proyecto es construir una interfaz basada en **componen
 
 ```text
 Amazon-Clone-with-React/
-├── .git/                      # Control de versiones
-├── README.md                  # Presentación del proyecto
-└── docs/                      # Sistema de documentación oficial
-    ├── .gitignore             # Excluye node_modules
-    ├── package.json           # Dependencias de la documentación
-    ├── DOCUMENTACION.md        # Fuente de la documentación (este archivo)
-    ├── plantilla.css           # Estilos de impresión del PDF
-    ├── generar-pdf.mjs         # Script generador del PDF
-    └── pdf/                    # PDFs generados (entregables)
+├── .git/                              # Control de versiones
+├── README.md                          # Presentación del proyecto (raíz)
+├── amazon-clone/                      # Aplicación React (Create React App)
+│   ├── .gitignore                     # Ignora node_modules, build, .env, etc.
+│   ├── package.json                   # Dependencias y scripts de la app
+│   ├── package-lock.json              # Lockfile
+│   ├── public/                        # Archivos estáticos servidos tal cual
+│   │   ├── favicon.ico
+│   │   ├── index.html                 # HTML base (punto de entrada)
+│   │   ├── logo192.png                # Icono PWA 192x192
+│   │   ├── logo512.png                # Icono PWA 512x512
+│   │   ├── manifest.json              # PWA manifest
+│   │   └── robots.txt
+│   └── src/                           # Código fuente de la aplicación
+│       ├── index.js                   # Punto de entrada (React 18+ createRoot)
+│       ├── App.js                     # Componente raíz
+│       ├── App.css                    # Estilos del componente App
+│       ├── index.css                  # Estilos globales
+│       ├── firebase.js                # Configuración de Firebase
+│       ├── logo.svg                   # Logo React (boilerplate)
+│       ├── reportWebVitals.js         # Medición de performance (web-vitals)
+│       ├── setupTests.js              # Configuración de Testing Library
+│       └── App.test.js                # Test de ejemplo
+├── docs/                              # Sistema de documentación oficial
+│   ├── .gitignore
+│   ├── package.json
+│   ├── DOCUMENTACION.md               # Fuente de la documentación (este archivo)
+│   ├── plantilla.css
+│   ├── generar-pdf.mjs
+│   └── pdf/                           # PDFs generados (entregables)
 ```
 
-**Estado:** el código fuente de la aplicación aún no ha sido creado.
+### 4.2 Estructura de la aplicación (`amazon-clone/src/`)
 
-### 4.2 Estructura objetivo (provisional)
-
-Cuando se inicialice la aplicación con Vite, se prevé la siguiente organización. Esta tabla se confirmará y ajustará en la versión 1.1.0 del documento.
-
-```text
-Amazon-Clone-with-React/
-├── index.html
-├── package.json
-├── vite.config.js
-├── public/
-└── src/
-    ├── main.jsx               # Punto de entrada
-    ├── App.jsx                # Raíz de la aplicación
-    ├── components/            # Componentes reutilizables
-    ├── pages/                 # Vistas / rutas
-    ├── hooks/                 # Hooks personalizados
-    ├── context/               # Estado global (React Context)
-    ├── services/              # Acceso a datos / API
-    ├── assets/                # Imágenes y recursos estáticos
-    └── styles/                # Hojas de estilo
-```
+| Archivo / Carpeta | Descripción |
+|---|---|
+| `index.js` | Punto de entrada: `ReactDOM.createRoot` + `React.StrictMode` + `reportWebVitals` |
+| `App.js` | Componente raíz (boilerplate CRA con logo y enlace a React) |
+| `App.css` / `index.css` | Hojas de estilo del componente y globales |
+| `firebase.js` | Objeto `firebaseConfig` con credenciales del proyecto `project-baf04` |
+| `setupTests.js` | `@testing-library/jest-dom` para matchers extendidos en tests |
+| `reportWebVitals.js` | Opcional: envío de métricas de performance a Analytics |
+| `public/index.html` | HTML base con `%PUBLIC_URL%` para assets, meta tags PWA |
 
 ### 4.3 Modelo arquitectónico
 
 - **Component-based:** la UI se compone de componentes pequeños, reutilizables y con una única responsabilidad.
 - **Flujo de datos unidireccional:** el estado desciende mediante props; los eventos ascienden mediante callbacks.
-- **Separación de capas:** presentación (`components/`), vistas (`pages/`), lógica (`hooks/`, `services/`) y estado (`context/`).
+- **Separación de capas (objetivo a medida que crezca):**
+  - `src/components/` — Componentes reutilizables de UI
+  - `src/pages/` — Vistas asociadas a rutas
+  - `src/hooks/` — Hooks personalizados
+  - `src/context/` — Estado global (React Context)
+  - `src/services/` — Acceso a datos / API / Firebase
+  - `src/assets/` — Imágenes y recursos estáticos
+  - `src/styles/` — Hojas de estilo globales / variables CSS
 
 ---
 
 ## 5. Instalación y arranque
 
-### 5.1 Generar la documentación (disponible hoy)
+### 5.1 Generar la documentación
 
 ```bash
 # 1. Instalar dependencias (solo la primera vez)
@@ -149,16 +168,24 @@ npm --prefix docs run generar
 
 El PDF se escribe en `docs/pdf/Documentacion-Oficial-v<versión>.pdf`.
 
-### 5.2 Ejecutar la aplicación (pendiente)
-
-**Pendiente:** los comandos definitivos se documentarán al inicializar el proyecto. Previsiblemente:
+### 5.2 Ejecutar la aplicación (`amazon-clone/`)
 
 ```bash
-npm install      # Instalar dependencias
-npm run dev      # Servidor de desarrollo (Vite)
-npm run build    # Build de producción
-npm run preview  # Vista previa del build
+# 1. Instalar dependencias
+cd amazon-clone
+npm install
+
+# 2. Servidor de desarrollo (puerto 3000)
+npm start
+
+# 3. Build de producción (carpeta build/)
+npm run build
+
+# 4. Tests en modo watch
+npm test
 ```
+
+> **Puerto por defecto:** 3000 (CRA). Si está ocupado, CRA pedirá usar otro.
 
 ---
 
@@ -175,7 +202,7 @@ npm run preview  # Vista previa del build
 ### 6.2 Ciclo de una funcionalidad
 
 1. Crear la rama desde `main`.
-2. Desarrollar y probar localmente.
+2. Desarrollar y probar localmente (`npm start` / `npm test`).
 3. Actualizar la documentación si corresponde (ver sección 14).
 4. Merge a `main` con mensaje de commit convencional.
 5. Regenerar el PDF oficial si hubo cambios relevantes.
@@ -194,13 +221,14 @@ Ejemplo: `feat: agregar tarjeta de producto en el home`.
 
 | Área | Convención |
 |---|---|
-| Archivos de componentes | `PascalCase.jsx` (ej. `ProductCard.jsx`) |
+| Archivos de componentes | `PascalCase.js` / `PascalCase.jsx` (ej. `ProductCard.js`) |
 | Componentes | Funcionales + hooks |
 | Variables y funciones | `camelCase` |
 | Componentes y tipos | `PascalCase` |
 | Constantes globales | `SCREAMING_SNAKE_CASE` |
-| Estilos | Archivo CSS por componente o carpeta `styles/` |
-| Props | Validar tipos cuando la complejidad lo justifique |
+| Estilos | Archivo CSS por componente (`Componente.css`) o carpeta `styles/` |
+| Props | Validar tipos cuando la complejidad lo justifique (PropTypes o TypeScript futuro) |
+| Imports | Relativos para código interno; absolutos (`@/...`) si se configura alias |
 
 ### 7.2 Estructura de un componente
 
@@ -221,38 +249,50 @@ export default Componente;
 - No duplicar lógica: extraer a hook o utilidad compartida.
 - Toda funcionalidad nueva debe quedar reflejada en este documento.
 - Los comentarios explican el *por qué*, no el *qué*.
+- Mantener `package-lock.json` en control de versiones.
 
 ---
 
 ## 8. Inventario de componentes
 
-**Estado:** pendiente — se poblará con el primer código fuente.
+**Estado:** inicial — componentes base de CRA.
 
 | Componente | Ubicación | Props | Responsabilidad |
 |---|---|---|---|
-| — | — | — | — |
+| `App` | `src/App.js` | — | Componente raíz (boilerplate, será reemplazado) |
+| `ReportWebVitals` | `src/reportWebVitals.js` | `onPerfEntry` | Medición opcional de performance (CLS, FID, LCP, etc.) |
+
+> **Nota:** `App.js` actual es el boilerplate de CRA. Se reemplazará por la estructura real del clon (header, home, productos, carrito, etc.) en próximas versiones.
 
 ---
 
 ## 9. Rutas y navegación
 
-**Estado:** pendiente.
+**Estado:** pendiente — CRA no incluye router por defecto.
 
 | Ruta | Página | Descripción |
 |---|---|---|
-| `/` | — | — |
+| `/` | `App` | Página actual (boilerplate) |
+
+> **Decisión pendiente:** se usará `react-router-dom` cuando se implementen las vistas (home, producto, carrito, checkout, cuenta).
 
 ---
 
 ## 10. Estado global y datos
 
-**Estado:** pendiente. La estrategia de estado global (React Context, store, etc.) y las fuentes de datos se documentarán al implementarse.
+**Estado:** pendiente.
+
+- **Firebase Config:** `src/firebase.js` expone `firebaseConfig` con credenciales del proyecto `project-baf04` (Auth, Firestore, Storage, Analytics).
+- **SDK de Firebase:** *no instalado aún* en `dependencies`. Se añadirá (`npm install firebase`) al implementar autenticación o base de datos.
+- **Estrategia de estado global:** por definir (React Context + useReducer, Zustand, Redux Toolkit, etc.). Se documentará en v1.2.0+.
 
 ---
 
 ## 11. Sistema de diseño
 
 **Estado:** pendiente. Paleta de colores, tipografía, espaciados y patrones visuales replicados de Amazon se documentarán en esta sección.
+
+> **Referencia visual:** Amazon usa principalmente `#131921` (navbar), `#232f3e` (footer), `#ff9900` (botones primarios / acentos), tipografía `Amazon Ember` / fallback sans-serif.
 
 ---
 
@@ -262,13 +302,30 @@ export default Componente;
 
 | Fase | Entregable | Estado |
 |---|---|---|
-| 0 | Documentación oficial del proyecto | ✅ Completada |
-| 1 | Inicialización del proyecto (Vite + React) | ⬜ Pendiente |
-| 2 | Por definir | ⬜ Pendiente |
+| 0 | Documentación oficial del proyecto | ✅ Completada (v1.0.0) |
+| 1 | Inicialización del proyecto (CRA + React 19 + Firebase config) | ✅ Completada (v1.1.0) |
+| 2 | Instalar Firebase SDK + Auth (login/registro) | ⬜ Pendiente |
+| 3 | Estructura de rutas + vistas base (Home, Producto, Carrito, Checkout) | ⬜ Pendiente |
+| 4 | Catálogo de productos + búsqueda + filtros | ⬜ Pendiente |
+| 5 | Carrito persistente + flujo de compra | ⬜ Pendiente |
+| 6 | Historial de pedidos + cuenta de usuario | ⬜ Pendiente |
+| 7 | Testing, accesibilidad, performance, despliegue | ⬜ Pendiente |
 
 ---
 
 ## 13. Historial de cambios (Changelog)
+
+### v1.1.0 — 2026-10-11 — `49fa7c2`
+
+- Inicialización de la aplicación React en `amazon-clone/` con **Create React App** (react-scripts 5.0.1).
+- **React 19.3.0** confirmado como versión de runtime.
+- Configuración de **Firebase** en `src/firebase.js` (proyecto `project-baf04`, Auth + Firestore + Storage + Analytics).
+- Estructura real del proyecto documentada (sección 4.1 y 4.2 actualizadas).
+- Stack tecnológico actualizado: CRA en lugar de Vite, Firebase configurado, Testing Library incluido.
+- Guía de instalación y arranque con comandos reales (`npm start`, `npm run build`, `npm test`).
+- Inventario de componentes inicial (`App`, `ReportWebVitals`).
+- Roadmap actualizado con fases concretas.
+- Documentación de la decisión de build tool (CRA vs Vite original).
 
 ### v1.0.0 — 2026-10-11 — `9bb4aa8`
 
@@ -309,5 +366,6 @@ Este documento es **oficial** y se mantiene actualizado en cada avance relevante
 |---|---|
 | Contenido del documento | `docs/DOCUMENTACION.md` |
 | Versión del documento | Front matter de `DOCUMENTACION.md` |
-| Dependencias de la app | `package.json` de la raíz |
+| Dependencias de la app | `amazon-clone/package.json` |
+| Configuración Firebase | `amazon-clone/src/firebase.js` |
 | Estado del código | Repositorio y su historial de Git |
