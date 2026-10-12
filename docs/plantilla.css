@@ -1,0 +1,247 @@
+/* =========================================================
+   Plantilla de impresión — Documentación oficial
+   Amazon Clone with React (A4)
+   ========================================================= */
+
+:root {
+  --azul: #131921;
+  --azul-claro: #232f3e;
+  --naranja: #ff9900;
+  --texto: #0f1111;
+  --gris: #565959;
+  --linea: #d5d9d9;
+  --fondo-code: #f7f8f8;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.2pt;
+  line-height: 1.6;
+  color: var(--texto);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---------- Portada ---------- */
+
+.portada {
+  page-break-after: always;
+  min-height: 245mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.portada-banda {
+  background: var(--azul);
+  color: #ffffff;
+  padding: 22mm 14mm 16mm;
+  margin: -8mm -10mm 0;
+}
+
+.portada-marca {
+  font-size: 10pt;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--naranja);
+  font-weight: 700;
+  margin-bottom: 10mm;
+}
+
+.portada-titulo {
+  font-size: 30pt;
+  line-height: 1.15;
+  margin: 0 0 4mm;
+  font-weight: 700;
+}
+
+.portada-subtitulo {
+  font-size: 14pt;
+  font-weight: 400;
+  color: #d8d8d8;
+  margin: 0;
+}
+
+.portada-cuerpo {
+  flex: 1;
+  padding: 14mm 4mm 0;
+}
+
+.tabla-meta {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10pt;
+  margin-top: 4mm;
+}
+
+.tabla-meta th {
+  text-align: left;
+  width: 38%;
+  padding: 7px 10px;
+  background: var(--fondo-code);
+  color: var(--azul-claro);
+  border-bottom: 1px solid var(--linea);
+  font-weight: 600;
+}
+
+.tabla-meta td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--linea);
+}
+
+.portada-pie {
+  margin-top: auto;
+  border-top: 3px solid var(--naranja);
+  padding-top: 4mm;
+  font-size: 8.5pt;
+  color: var(--gris);
+}
+
+/* ---------- Índice ---------- */
+
+.indice {
+  page-break-after: always;
+}
+
+.indice h2 {
+  border: none;
+  color: var(--azul);
+  font-size: 18pt;
+  margin-top: 0;
+}
+
+.indice ul {
+  list-style: none;
+  padding: 0;
+  margin: 6mm 0 0;
+}
+
+.indice li {
+  margin: 0 0 3.5mm;
+  font-size: 10.5pt;
+}
+
+.indice li.n3 {
+  margin-left: 8mm;
+  font-size: 9.5pt;
+}
+
+.indice a {
+  color: var(--texto);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--linea);
+}
+
+.indice li.n3 a { color: var(--gris); }
+
+/* ---------- Encabezados ---------- */
+
+h1 {
+  font-size: 19pt;
+  color: var(--azul);
+  margin: 0 0 6mm;
+}
+
+h2 {
+  font-size: 14.5pt;
+  color: var(--azul);
+  border-bottom: 2px solid var(--naranja);
+  padding-bottom: 2mm;
+  margin: 9mm 0 4mm;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 11.5pt;
+  color: var(--azul-claro);
+  margin: 6mm 0 2mm;
+  page-break-after: avoid;
+}
+
+/* ---------- Contenido ---------- */
+
+p { margin: 0 0 3mm; }
+
+ul, ol { margin: 0 0 4mm; padding-left: 6mm; }
+li { margin-bottom: 1.5mm; }
+
+a { color: #0f4c81; }
+
+strong { color: var(--azul); }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--linea);
+  margin: 7mm 0;
+}
+
+blockquote {
+  margin: 4mm 0;
+  padding: 3mm 5mm;
+  background: #fff8e7;
+  border-left: 4px solid var(--naranja);
+  color: #333;
+  font-size: 9.6pt;
+}
+
+blockquote p:last-child { margin-bottom: 0; }
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 8.8pt;
+  background: var(--fondo-code);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+pre {
+  background: var(--azul);
+  color: #eaebed;
+  padding: 4mm;
+  border-radius: 4px;
+  font-size: 8.3pt;
+  line-height: 1.45;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  page-break-inside: avoid;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ---------- Tablas ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.2pt;
+  margin: 3mm 0 5mm;
+  page-break-inside: avoid;
+}
+
+th {
+  background: var(--azul-claro);
+  color: #ffffff;
+  text-align: left;
+  padding: 6px 9px;
+  font-weight: 600;
+}
+
+td {
+  padding: 6px 9px;
+  border-bottom: 1px solid var(--linea);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) td { background: var(--fondo-code); }
