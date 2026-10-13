@@ -1,22 +1,21 @@
 import './Product.css';
-import product1 from '../assets/img/products/product-1.webp';
 
-function Product() {
+function Product({ title, image, price, rating}) {
   return (
     <div className="product">
         <div className="product__info">
-            <p>The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback</p>
+            <p>{title}</p>
             <p className="product__price">
                 <small>$</small>
-                <strong>19.99</strong>
+                <strong>{price}</strong>
             </p>
             <div className="product__rating">
-                <p>🌟</p>
-                <p>🌟</p>
-                <p>🌟</p>
+                {Array(rating).fill().map((_, i) => (
+                    <p>🌟</p>
+                ))}
             </div>
         </div>
-        <img src={product1}/>
+        <img src={image}/>
         <button>Add to Basket</button>
     </div>
   )
